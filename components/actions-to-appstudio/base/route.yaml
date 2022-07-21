@@ -1,0 +1,23 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: actions-to-appstudio
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: actions-to-appstudio
+    app.kubernetes.io/part-of: use-github-as-ci
+  name: actions-to-appstudio
+  namespace: use-github-as-ci
+spec:
+  port:
+    targetPort: 8080
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: actions-to-appstudio
+    weight: 100
+status: {}
